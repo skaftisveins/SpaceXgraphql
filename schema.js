@@ -36,7 +36,7 @@ const RocketType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    lauches: {
+    launches: {
       type: new GraphQLList(LaunchType),
       resolve(parent, args) {
         return axios
@@ -51,8 +51,8 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return axios
-          .get(`https://api.spacexdata.com/v3/launches${args.flight_number}`)
-          .then((res = res.data));
+          .get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`)
+          .then(res => res.data);
       }
     },
     rockets: {
@@ -70,7 +70,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return axios
-          .get(`https://api.spacexdata.com/v3/launches${args.id}`)
+          .get(`https://api.spacexdata.com/v3/rockets${args.id}`)
           .then((res = res.data));
       }
     }
